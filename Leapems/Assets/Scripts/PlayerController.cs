@@ -19,18 +19,19 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (!mouseDown && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             startPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mouseDown = true;
             StartCoroutine("MouseDownLoop");
         }
 
-
         if (Input.GetMouseButtonUp(0))
         {
             mouseDown = false;
         }
+
+        
 	}
 
     IEnumerator MouseDownLoop()
@@ -38,6 +39,12 @@ public class PlayerController : MonoBehaviour {
         while (mouseDown)
         {
             endPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 distance = endPos - startPos;
+            Debug.Log(distance.magnitude);
+            if(distance.magnitude >= 1)
+            {
+                mouseDown = false;
+            }
             yield return null;
         }
     }
