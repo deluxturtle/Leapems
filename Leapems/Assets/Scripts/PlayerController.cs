@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     public Slider popSlider;
     //Limit on the slider value. (Trigger value)
     public float actionSliderLimit = 1f;
+    public GameObject pixel;
 
     Vector2 startPos;
     Vector2 endPos;
@@ -77,9 +78,11 @@ public class PlayerController : MonoBehaviour {
                 prevMag = curMag;
             }
             
+            //When Fired
             if(distance.magnitude >= 1)
             {
                 Debug.Log("Fire! @ speeds of " + GetLargestDelta());
+                //Instantiate Bullet.
                 crosshair.SetActive(false);
                 mouseDown = false;
             }
@@ -98,6 +101,7 @@ public class PlayerController : MonoBehaviour {
         lastThree[2] = pDelta;
     }
 
+    //returns the biggest distance between vectors
     float GetLargestDelta()
     {
         float biggestNum = lastThree[0];
