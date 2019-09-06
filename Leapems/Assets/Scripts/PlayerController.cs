@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
             if(distance.magnitude >= 1)
             {
                 Debug.Log("Fire! @ speeds of " + GetLargestDelta());
-                //Instantiate Bullet.
+                pixel.GetComponent<PBullet>().Action(-distance, transform.position);
                 crosshair.SetActive(false);
                 mouseDown = false;
             }
